@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 241, 245, 249;
+  
+  /* Modern Color Palette */
+  --primary-rgb: 103, 58, 183;
+  --secondary-rgb: 0, 188, 212;
+  --accent-rgb: 233, 30, 99;
+  
+  /* Glass Effects */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 13, 17, 23;
+  --background-end-rgb: 23, 27, 35;
+  
+  /* Dark Mode Color Palette - Increased Brightness for Better Visibility */
+  --primary-rgb: 147, 107, 239;
+  --secondary-rgb: 56, 232, 255;
+  --accent-rgb: 255, 84, 149;
+  
+  /* Dark Glass Effects */
+  --glass-bg: rgba(28, 32, 40, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Enhanced background accents with multiple layers */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(
+      circle at top left,
+      rgba(var(--primary-rgb), 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(var(--secondary-rgb), 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 20%,
+      rgba(var(--accent-rgb), 0.07),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 30% 80%,
+      rgba(var(--primary-rgb), 0.06),
+      transparent 25%
+    );
+  z-index: -1;
+}
+
+/* Stunning colorful gradient background elements */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 15% 85%, rgba(var(--primary-rgb), 0.12) 0%, rgba(var(--primary-rgb), 0) 50%),
+    radial-gradient(circle at 85% 15%, rgba(var(--secondary-rgb), 0.12) 0%, rgba(var(--secondary-rgb), 0) 50%),
+    radial-gradient(circle at 75% 75%, rgba(var(--accent-rgb), 0.08) 0%, rgba(var(--accent-rgb), 0) 50%),
+    radial-gradient(circle at 25% 25%, rgba(var(--secondary-rgb), 0.08) 0%, rgba(var(--secondary-rgb), 0) 45%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Decorative floating blobs with subtle animation */
+.blob-1, .blob-2, .blob-3 {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.blob-1 {
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.6), rgba(var(--accent-rgb), 0.2));
+  top: -15%;
+  right: -15%;
+  animation: float 25s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 35vw;
+  height: 35vw;
+  background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.5), rgba(var(--primary-rgb), 0.2));
+  bottom: -10%;
+  left: -10%;
+  animation: float 20s ease-in-out infinite alternate-reverse;
+}
+
+.blob-3 {
+  width: 25vw;
+  height: 25vw;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.4), rgba(var(--secondary-rgb), 0.1));
+  top: 40%;
+  left: 60%;
+  animation: float 30s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(2%, 2%) rotate(2deg);
+  }
+  66% {
+    transform: translate(-2%, 1%) rotate(-1deg);
+  }
+  100% {
+    transform: translate(1%, -2%) rotate(1deg);
+  }
+}
+
+/* Enhanced glass effect with better definition */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg, 
+    rgba(255, 255, 255, 0.09) 0%, 
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.02) 80%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Glow effect for elements */
+.glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(var(--primary-rgb), 0.3) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow:hover::after {
+  opacity: 1;
+}
+
+/* Specialized glow types */
+.glow-primary {
+  box-shadow: var(--glow-primary);
+}
+
+.glow-accent {
+  box-shadow: var(--glow-accent);
+}
+
+.glow-secondary {
+  box-shadow: var(--glow-secondary);
+}
+
+@layer components {
+  /* Streamlined button styles */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md;
+  }
+
+  .btn-primary {
+    @apply text-white;
+    background: linear-gradient(to right, rgba(var(--primary-rgb), 0.9), rgba(var(--accent-rgb), 0.9));
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
+  }
+
+  .btn-secondary {
+    @apply text-white;
+    background: linear-gradient(to right, rgba(var(--secondary-rgb), 0.9), rgba(var(--primary-rgb), 0.9));
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--secondary-rgb), 0.3);
+  }
+
+  .btn-outline {
+    @apply border backdrop-blur-sm text-gray-700 dark:text-gray-200;
+    border-color: rgba(var(--primary-rgb), 0.3);
+  }
+
+  .btn-outline:hover {
+    background: rgba(var(--primary-rgb), 0.1);
+  }
+  .btn-glass {
+    @apply glass border-transparent text-gray-800 dark:text-gray-200;
+  }
+  
+  .btn-glass:hover {
+    transform: translateY(-2px);
+  }
+
+  .input-field {
+    @apply w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+}
